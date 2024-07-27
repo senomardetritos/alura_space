@@ -1,19 +1,19 @@
-{% extends 'galeria/base.html' %} {% load static %} {% block content %}
-
+{% extends 'shared/base.html' %} {% load static %} {% block content %}
 <main class="principal">
-	{% include 'galeria/partials/_menu.html' %}
+	{% include 'partials/_menu.html' %}
 	<section class="conteudo">
 		<section class="banner">
 			<img class="banner__imagem" src="{% static '/assets/imagens/Banner(2).png' %}" alt="banner Alura Space" />
 			<h1 class="banner__titulo">A galeria mais completa de fotos do espaço!</h1>
 		</section>
-		{% include 'galeria/partials/_bytag.html' %}
+		{% include 'partials/_bytag.html' %}
 		<section class="galeria">
+			{% if user.is_authenticated %}
 			<div class="cards">
 				<h2 class="cards__titulo">Navegue pela galeria</h2>
 				<ul class="cards__lista">
 					{% if cards %} {% for foto in cards %}
-					<li class="card">
+					<li class="card bg-dark">
 						<a href="{% url 'imagem' foto.id %}">
 							{% if foto.foto == '' or foto.foto == null %}
 							<img class="card__imagem" src="{% static '/assets/imagens/galeria/not-found.png' %}" alt="foto" />
@@ -44,6 +44,7 @@
 					{% endif %}
 				</ul>
 			</div>
+			{% endif %}
 		</section>
 	</section>
 </main>

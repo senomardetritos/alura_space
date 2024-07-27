@@ -1,3 +1,4 @@
+{% if user.is_authenticated %}
 <section class="tags">
 	<p class="tags__titulo">Busque por tags:</p>
 	<ul class="tags__lista">
@@ -15,3 +16,4 @@
 		</li>
 	</ul>
 </section>
+{% endif %}

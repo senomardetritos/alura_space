@@ -1,8 +1,9 @@
-{% extends 'galeria/base.html' %} {% load static %} {% block content %}
+{% extends 'shared/base.html' %} {% load static %} {% block content %}
 
 <main class="principal">
-	{% include 'galeria/partials/_menu.html' %}
+	{% include 'partials/_menu.html' %}
 	<section class="conteudo">
+		{% if user.is_authenticated %}
 		<section class="imagem">
 			<div class="imagem__conteudo">
 				{% if fotografia.foto == '' or fotografia.foto == null %}
@@ -20,6 +21,15 @@
 				</div>
 			</div>
 		</section>
+		<div class="row">
+			<div class="col-6">
+				<a href="{% url 'editar_imagem' fotografia.id %}" class="btn btn-primary">Editar</a>
+			</div>
+			<div class="col-6 text-end">
+				<a href="{% url 'deletar_imagem' fotografia.id %}" class="btn btn-danger">Excluir</a>
+			</div>
+		</div>
+		{% endif %}
 	</section>
 </main>
 
